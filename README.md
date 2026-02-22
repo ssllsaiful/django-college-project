@@ -1,10 +1,11 @@
-pip freeze > requirements.txt
+    pip freeze > requirements.txt
 
-python manage.py makemigrations
-python manage.py migrate
+    python manage.py makemigrations
 
-python manage.py runserver
+    python manage.py migrate
 
-python manage.py shell
+    python manage.py runserver
 
-python manage.py makemigrations api
+    python manage.py shell
+
+    python manage.py makemigrations api

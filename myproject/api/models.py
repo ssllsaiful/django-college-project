@@ -25,3 +25,12 @@ class Teacher(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Subject(models.Model):
+    subject_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=100)
+    code = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name

@@ -3,7 +3,9 @@ from django.urls import path, include
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
-from .views import students_list, teachers_list  # if this is myproject/urls.py
+from .views import students_list, teachers_list
+from .views import subjects_list
+  # if this is myproject/urls.py
 
 
 schema_view = get_schema_view(
@@ -21,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('v2/students/',students_list),
     path('v2/teachers/',teachers_list),
+    path('v2/subjects/', subjects_list),
 
     # Swagger UI
     path('api/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),

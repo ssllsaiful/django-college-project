@@ -2,11 +2,11 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import JsonResponse
-from .models import Student, Teacher
+from .models import Student, Teacher ,Subject
 
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import StudentSerializer, TeacherSerializer
+from .serializers import StudentSerializer, TeacherSerializer, SubjectSerializer
 
 
 def hello_world(request):
@@ -54,6 +54,17 @@ def teachers_list(request):
 
     return JsonResponse(data, safe=False)
 
+def subjects_list(request):
+    subjects = subject.objects.all()
+    data = []
+    for subject in subjects:
+        data.append({
+            "subject_id": subject.subject_id,
+            "name": subject.name,
+            "code": subject.code
+        })
+    return JsonResponse(data, safe=False)
+
 
 # API views using DRF for better serialization and response handling
 #Swagger list addition
@@ -89,4 +100,15 @@ def teachers_list(request):
     content_type="application/json"
     )
 
-
+@api_view(['GET'])
+def subjects_list(request):
+    subjects = Subject.objects.all()
+    serializer = SubjectSerializer(subjects, many=True)
+    response_data = {
+        "total_count": subjects.count(),
+        "subjects": serializer.data
+    }
+    return Response(
+        response_data,
+        content_type="application/json"
+    )

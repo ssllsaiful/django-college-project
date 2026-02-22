@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Student, Teacher
+from .models import Student, Teacher, Subject
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
@@ -10,3 +10,7 @@ class StudentAdmin(admin.ModelAdmin):
 class TeacherAdmin(admin.ModelAdmin):
     list_display = ('teacher_id', 'name', 'designation', 'subject', 
                     'phone_number', 'email')
+    
+@admin.register(Subject)
+class SubjectAdmin(admin.ModelAdmin):
+    list_display = ('subject_id', 'name', 'code')
